@@ -77,11 +77,21 @@ export async function POST(req: Request): Promise<Response> {
     `.trim(),
   };
 
-  auditMessage({
-    role: systemPrompt.role,
-    content: systemPrompt.content,
-    timestamp: new Date().toISOString(),
-  });
+  const hasSystemPrompt = messages.some(
+  (msg) =>
+    msg.role === 'system' &&
+    msg.parts.some((p) =>
+      p.text.includes('You are an extraordinary conversational agent')
+    )
+  );
+
+  if (!hasSystemPrompt) {
+    auditMessage({
+      role: systemPrompt.role,
+      content: systemPrompt.content,
+      timestamp: new Date().toISOString(),
+    });
+  }
 
   const promptMessages: ChatHistoryMessage[] = [systemPrompt, ...chatHistory];
 

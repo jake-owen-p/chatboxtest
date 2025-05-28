@@ -30,13 +30,13 @@ export const MessageInput: React.FC<MessageInputProps> = ({
   }, [value]);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    onSend();
-  } else {
-    onKeyDown(e);
-  }
-};
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      onSend();
+    } else {
+      onKeyDown(e);
+    }
+  };
 
   const Icon = isLoading ? StopIcon : PaperAirplaneIcon;
 

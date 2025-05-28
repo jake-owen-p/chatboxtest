@@ -1,98 +1,85 @@
-import React, { ChangeEvent, KeyboardEvent, RefObject } from 'react'
+import React, { ChangeEvent, KeyboardEvent, RefObject, useEffect } from 'react'
+import { MessageInput } from '@/components/molecules/chatInput/ChatInput'
+import { MessageList } from '@/components/molecules/messages/MessageList'
+import { MessageHeader } from '@/components/molecules/messages/MessageHeader'
+import { ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline'
 
-type Message = {
-  role: 'user' | 'assistant' | string
+export type Message = {
+  role: 'user' | 'assistant' | 'system' | string
   content: string
 }
 
-type ChatUIProps = {
+type Props = {
   isOpen: boolean
   messages: Message[]
   input: string
   isLoading: boolean
+  feedback: Record<number, 'up' | 'down'>
   onOpen: () => void
   onClose: () => void
-  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onInputChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   onSend: () => void
   onStop: () => void
+  onFeedback: (messageIndex: number, type: 'up' | 'down', message: Message) => void
   endRef: RefObject<HTMLDivElement | null>
 }
 
-export const Messages: React.FC<ChatUIProps> = ({
+export const Messages: React.FC<Props> = ({
   isOpen,
   messages,
   input,
   isLoading,
+  feedback,
   onOpen,
   onClose,
   onInputChange,
   onSend,
   onStop,
+  onFeedback,
   endRef,
 }) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter') {
+      if (isLoading) { onStop() } else onSend()
+    }
+  }
+
+  useEffect(() => {
+    if (endRef.current) {
+      endRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [messages.length, isLoading, endRef])
+
   if (!isOpen) {
     return (
       <button
         onClick={onOpen}
-        className="cursor-pointer fixed bottom-6 right-6 w-12 h-12 rounded-l-lg bg-blue-600 text-white flex items-center justify-center shadow-lg hover:bg-blue-700"
+        className="cursor-pointer fixed bottom-6 p-2 text-primary-900 right-0 w-12 h-12 rounded-l-lg bg-secondary flex items-center justify-center shadow-lg hover:bg-tertiary"
         aria-label="Open chat"
       >
-        💬
+        <ChatBubbleLeftEllipsisIcon />
       </button>
     )
   }
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-        if (isLoading) { onStop() } else onSend()
-    }
-  }
-
   return (
-    <div className="fixed bottom-6 right-6 w-80 h-96 flex flex-col rounded-lg shadow-lg border bg-white dark:bg-gray-900">
-      <div className="flex items-center justify-between p-2 border-b bg-gray-100 dark:bg-gray-800 rounded-t-lg">
-        <span className="text-sm font-medium">Chat</span>
-        <button
-          onClick={onClose}
-          className="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-          aria-label="Close chat"
-        >
-          ✕
-        </button>
-      </div>
-      <div className="flex-1 p-3 overflow-y-auto space-y-2 text-sm">
-        {messages.map((m, i) =>
-          m.role === 'user' ? (
-            <div
-              key={i}
-              className="self-end max-w-[75%] bg-blue-600 text-white rounded-md px-3 py-1 text-left"
-            >
-              {m.content}
-            </div>
-          ) : (
-            <div key={i} className="self-start text-gray-900 dark:text-gray-50">
-              {m.content}
-            </div>
-          ),
-        )}
-        <div ref={endRef} />
-      </div>
-      <div className="p-3 flex gap-2">
-        <input
-          value={input}
-          onChange={onInputChange}
-          onKeyDown={handleKeyDown}
-          className="flex-1 rounded-md border px-2 py-1 text-sm bg-transparent outline-none"
-          placeholder="Type a message"
-          disabled={isLoading}
-        />
-        <button
-          onClick={isLoading ? onStop : onSend}
-          className="px-3 py-1 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 disabled:opacity-50"
-        >
-          {isLoading ? 'Stop' : 'Send'}
-        </button>
-      </div>
+    <div className="fixed bottom-6 right-6 w-80 h-96 flex flex-col rounded-lg shadow-lg border bg-primary-100 dark:bg-gray-900">
+      <MessageHeader onClose={onClose} />
+      <MessageList
+        messages={messages}
+        isLoading={isLoading}
+        feedback={feedback}
+        onFeedback={onFeedback}
+        endRef={endRef}
+      />
+      <MessageInput
+        value={input}
+        isLoading={isLoading}
+        onChange={onInputChange}
+        onKeyDown={handleKeyDown}
+        onSend={onSend}
+        onStop={onStop}
+      />
     </div>
   )
 }

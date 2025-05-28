@@ -27,7 +27,7 @@
 
 ---
 
-## 🚀 Future Improvements
+## 🚀 AI Future Improvements
 
 ### 🤖 Chatbot
 - **Chat History & Sessions**  
@@ -41,7 +41,7 @@
   - Continue from previous sessions
   - Duplicate existing sessions for branching questions
 
-### 🤖 AI Enhancements
+### 🤖 LLM Enhancements
 - **Personalized Travel Suggestions**  
   Generate itineraries with hidden gems, local events, and seasonal highlights based on user preferences
 
@@ -110,8 +110,61 @@ If users' preferences are stored (e.g. favorite country/continent/destination), 
 
 ---
 
+## 🔐 Chat Security & Abuse Prevention
+
+Ensure the chatbot and LLM usage is protected against misuse, excessive costs, and malicious actors.
+
+### ✅ Rate Limiting & Abuse Throttling
+- **IP-Based Rate Limiting**  
+  Use middleware (e.g. `express-rate-limit`, edge middleware, or API gateway throttling) to prevent flooding.
+- **Token Bucket or Sliding Window Algorithms**  
+  Implement fair throttling that balances burst handling with sustained rate limits.
+
+### 🛑 Misuse Protection
+- **OpenAI Credit Protection**  
+  - Enforce session validation or basic auth before calling the OpenAI API  
+  - Apply per-user/session/day usage caps  
+  - Track API usage per user and alert on cost thresholds  
+  - Use OpenAI's moderation API to block unsafe inputs
+- **Prompt Injection Mitigation**  
+  - Sanitize user input before adding to prompt  
+  - Design system prompts to isolate logic from user-provided data
+
+### 🌐 CORS & Origin Control
+- **CORS Whitelisting**  
+  Limit allowed origins to trusted domains only  
+- **Bot Protection**  
+  Use tools like reCAPTCHA or signed tokens to prevent abuse from frontend bots or scrapers
+
+### 🌍 IP Intelligence
+- **Geo/IP Filtering**  
+  Block or flag requests from high-risk countries or IPs using services like Cloudflare, MaxMind, or IP2Location
+
+### 🔒 Authentication & Session Control
+- **Anonymous Token Auth or JWT**  
+  Assign session-based IDs for anonymous users or implement full user accounts with NextAuth  
+- **Per-user Quotas & Admin Tools**  
+  - Rate limit based on user identity  
+  - Add internal dashboards for usage review and abuse flagging
+
+### 🧼 Input/Output Moderation
+- **Content Filtering**  
+  - Use OpenAI's moderation endpoint to flag harmful input  
+  - Log and review flagged prompts or completions
+- **Safe Output Wrapping**  
+  - Detect and handle hallucinated offensive outputs gracefully  
+  - Blur or warn for sensitive topics
+z
+### 💾 Caching & Deduplication
+- **Prompt/Response Caching**  
+  Cache frequently asked questions to reduce token spend
+- **Semantic Deduplication**  
+  Prevent re-processing of repeated queries using embedding similarity checks
+
+---
+
 ### 💬 UX & Design
-- Responsive design
+- Responsive
 - Allow manual scroll takeover without forced auto-scroll
 - Add typewriter effect and human avatar for emotional connection
 - Improve accessibility and mobile UI responsiveness

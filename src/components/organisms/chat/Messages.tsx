@@ -1,28 +1,28 @@
-import React, { ChangeEvent, KeyboardEvent, RefObject, useEffect } from 'react'
-import { MessageInput } from '@/components/molecules/chatInput/ChatInput'
-import { MessageList } from '@/components/molecules/messages/MessageList'
-import { MessageHeader } from '@/components/molecules/messages/MessageHeader'
-import { ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline'
+import React, { ChangeEvent, KeyboardEvent, RefObject, useEffect } from 'react';
+import { MessageInput } from '@/components/molecules/chatInput/ChatInput';
+import { MessageList } from '@/components/molecules/messages/MessageList';
+import { MessageHeader } from '@/components/molecules/messages/MessageHeader';
+import { ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline';
 
 export type Message = {
-  role: 'user' | 'assistant' | 'system' | string
-  content: string
-}
+  role: 'user' | 'assistant' | 'system' | string;
+  content: string;
+};
 
 type Props = {
-  isOpen: boolean
-  messages: Message[]
-  input: string
-  isLoading: boolean
-  feedback: Record<number, 'up' | 'down'>
-  onOpen: () => void
-  onClose: () => void
-  onInputChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
-  onSend: () => void
-  onStop: () => void
-  onFeedback: (messageIndex: number, type: 'up' | 'down', message: Message) => void
-  endRef: RefObject<HTMLDivElement | null>
-}
+  isOpen: boolean;
+  messages: Message[];
+  input: string;
+  isLoading: boolean;
+  feedback: Record<number, 'up' | 'down'>;
+  onOpen: () => void;
+  onClose: () => void;
+  onInputChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onSend: () => void;
+  onStop: () => void;
+  onFeedback: (messageIndex: number, type: 'up' | 'down', message: Message) => void;
+  endRef: RefObject<HTMLDivElement | null>;
+};
 
 export const Messages: React.FC<Props> = ({
   isOpen,
@@ -40,15 +40,17 @@ export const Messages: React.FC<Props> = ({
 }) => {
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
-      if (isLoading) { onStop() } else onSend()
+      if (isLoading) {
+        onStop();
+      } else onSend();
     }
-  }
+  };
 
   useEffect(() => {
     if (endRef.current) {
-      endRef.current.scrollIntoView({ behavior: 'smooth' })
+      endRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages.length, isLoading, endRef])
+  }, [messages.length, isLoading, endRef]);
 
   if (!isOpen) {
     return (
@@ -59,7 +61,7 @@ export const Messages: React.FC<Props> = ({
       >
         <ChatBubbleLeftEllipsisIcon />
       </button>
-    )
+    );
   }
 
   return (
@@ -81,5 +83,5 @@ export const Messages: React.FC<Props> = ({
         onStop={onStop}
       />
     </div>
-  )
-}
+  );
+};

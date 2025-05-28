@@ -1,0 +1,9 @@
+# ignore build outputs
+.next
+out
+
+# ignore dependencies
+node_modules
+
+# ignore lockfiles / configs
+package-lock.json

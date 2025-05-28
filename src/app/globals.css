@@ -1,7 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #243F26;
+  --background: #243f26;
   --foreground: #171717;
 }
 
@@ -10,17 +10,18 @@
   --color-foreground: var(--foreground);
   --color-font-sans: var(--font-geist-sans);
   --color-font-mono: var(--font-geist-mono);
-  --color-primary-900: #243F26;
-  --color-primary-400: #49994F;
-  --color-primary-100: #E7F5E8;
-  --color-secondary: #EFFB3F;
-  --color-tertiary: #05A805;
+  --color-primary-900: #243f26;
+  --color-primary-400: #49994f;
+  --color-primary-100: #e7f5e8;
+  --color-secondary: #effb3f;
+  --color-tertiary: #05a805;
 }
 
 @layer utilities {
   .bg-grid-pattern {
-    background-image: linear-gradient(to right, rgba(0, 255, 0, 0.1) 2px, transparent 2px),
-                      linear-gradient(to bottom, rgba(0, 255, 0, 0.1) 2px, transparent 2px);
+    background-image:
+      linear-gradient(to right, rgba(0, 255, 0, 0.1) 2px, transparent 2px),
+      linear-gradient(to bottom, rgba(0, 255, 0, 0.1) 2px, transparent 2px);
     background-size: 60px 60px;
   }
 }

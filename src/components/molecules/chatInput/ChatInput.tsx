@@ -1,14 +1,14 @@
-import React, { useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react'
-import { PaperAirplaneIcon, StopIcon } from '@heroicons/react/24/outline'
+import React, { useRef, useEffect, ChangeEvent, KeyboardEvent } from 'react';
+import { PaperAirplaneIcon, StopIcon } from '@heroicons/react/24/outline';
 
 export type MessageInputProps = {
-  value: string
-  isLoading: boolean
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
-  onKeyDown: (e: KeyboardEvent<HTMLTextAreaElement>) => void
-  onSend: () => void
-  onStop: () => void
-}
+  value: string;
+  isLoading: boolean;
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  onKeyDown: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
+  onSend: () => void;
+  onStop: () => void;
+};
 
 export const MessageInput: React.FC<MessageInputProps> = ({
   value,
@@ -18,18 +18,18 @@ export const MessageInput: React.FC<MessageInputProps> = ({
   onSend,
   onStop,
 }) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    const ta = textareaRef.current
-    if (!ta) return
+    const ta = textareaRef.current;
+    if (!ta) return;
 
-    ta.style.height = 'auto'
-    const maxHeight = 200 
-    ta.style.height = Math.min(ta.scrollHeight, maxHeight) + 'px'
-  }, [value])
+    ta.style.height = 'auto';
+    const maxHeight = 200;
+    ta.style.height = Math.min(ta.scrollHeight, maxHeight) + 'px';
+  }, [value]);
 
-  const Icon = isLoading ? StopIcon : PaperAirplaneIcon
+  const Icon = isLoading ? StopIcon : PaperAirplaneIcon;
 
   return (
     <div className="p-3 flex gap-2">
@@ -51,5 +51,5 @@ export const MessageInput: React.FC<MessageInputProps> = ({
         <Icon className="h-4 w-4" />
       </button>
     </div>
-  )
-}
+  );
+};

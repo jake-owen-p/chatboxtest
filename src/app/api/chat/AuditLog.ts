@@ -1,13 +1,13 @@
-import { Role } from "@/types/chat"
+import { Role } from '@/types/chat';
 
 export interface AuditEntry {
-  role: Role
-  content: string
-  timestamp: string
+  role: Role;
+  content: string;
+  timestamp: string;
 }
 
-const auditStore: AuditEntry[] = []
+const auditStore: AuditEntry[] = [];
 
 export function auditMessage(entry: AuditEntry): void {
-  auditStore.push(entry)
+  auditStore.push(entry);
 }

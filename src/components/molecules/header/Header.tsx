@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react'
-import Image from 'next/image'
+import { PropsWithChildren } from 'react';
+import Image from 'next/image';
 import {
   RectangleStackIcon,
   ChartBarIcon,
@@ -7,13 +7,11 @@ import {
   UserIcon,
   QuestionMarkCircleIcon,
   BookOpenIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/24/outline';
 
 const HeaderButtonContainer = ({ children }: PropsWithChildren) => (
-  <div className="bg-white rounded-full inline-block p-2 cursor-pointer">
-    {children}
-  </div>
-)
+  <div className="bg-white rounded-full inline-block p-2 cursor-pointer">{children}</div>
+);
 
 const navItems = [
   { icon: RectangleStackIcon, label: 'Product' },
@@ -22,14 +20,14 @@ const navItems = [
   { icon: UserIcon, label: 'Use Cases' },
   { icon: QuestionMarkCircleIcon, label: 'FAQ' },
   { icon: BookOpenIcon, label: 'Our Blog' },
-]
+];
 
 export const Header = () => {
   return (
     <div className="mt-4 w-full flex justify-between items-center bg-[#394E3D] p-3 rounded-full">
       <HeaderButtonContainer>
-        <div >
-            <Image src="/logo.png" alt="logo" width={90} height={20} />
+        <div>
+          <Image src="/logo.png" alt="logo" width={90} height={20} />
         </div>
       </HeaderButtonContainer>
 
@@ -50,5 +48,5 @@ export const Header = () => {
         <Image src="/burger-menu.svg" alt="menu" width={20} height={20} />
       </HeaderButtonContainer>
     </div>
-  )
-}
+  );
+};

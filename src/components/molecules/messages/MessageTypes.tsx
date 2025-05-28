@@ -1,4 +1,4 @@
-import { Text } from "@/components/atoms/typography/Text";
+import { Text } from '@/components/atoms/typography/Text';
 
 export const UserMessage: React.FC<{ content: string }> = ({ content }) => (
   <div className="flex justify-end">

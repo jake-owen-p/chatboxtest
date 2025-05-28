@@ -1,23 +1,28 @@
-import React from 'react'
+import React from 'react';
 import {
   HandThumbUpIcon as ThumbUpOutlineIcon,
-  HandThumbDownIcon as ThumbDownOutlineIcon
-} from '@heroicons/react/24/outline'
+  HandThumbDownIcon as ThumbDownOutlineIcon,
+} from '@heroicons/react/24/outline';
 import {
   HandThumbUpIcon as ThumbUpSolidIcon,
-  HandThumbDownIcon as ThumbDownSolidIcon
-} from '@heroicons/react/24/solid'
-import { Message } from '@/components/organisms/chat/Messages'
+  HandThumbDownIcon as ThumbDownSolidIcon,
+} from '@heroicons/react/24/solid';
+import { Message } from '@/components/organisms/chat/Messages';
 
 type FeedbackButtonsProps = {
-  messageIndex: number
-  feedbackType: 'up' | 'down' | undefined
-  onFeedback: (messageIndex: number, type: 'up' | 'down', message: Message) => void
-  message: Message
-}
+  messageIndex: number;
+  feedbackType: 'up' | 'down' | undefined;
+  onFeedback: (messageIndex: number, type: 'up' | 'down', message: Message) => void;
+  message: Message;
+};
 
-export const FeedbackButtons: React.FC<FeedbackButtonsProps> = ({ messageIndex, feedbackType, onFeedback, message }) => {
-  const hasFeedback = feedbackType !== undefined
+export const FeedbackButtons: React.FC<FeedbackButtonsProps> = ({
+  messageIndex,
+  feedbackType,
+  onFeedback,
+  message,
+}) => {
+  const hasFeedback = feedbackType !== undefined;
   return (
     <div className="flex space-x-2 mt-1 ml-2">
       <button
@@ -45,5 +50,5 @@ export const FeedbackButtons: React.FC<FeedbackButtonsProps> = ({ messageIndex, 
         )}
       </button>
     </div>
-  )
-}
+  );
+};

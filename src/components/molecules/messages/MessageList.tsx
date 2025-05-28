@@ -1,15 +1,19 @@
-import React, { RefObject } from 'react'
-import { AssistantMessage, SystemMessage, UserMessage } from '@/components/molecules/messages/MessageTypes'
-import { FeedbackButtons } from '@/components/molecules/feedbackButtons/FeedbackButtons'
-import { Message } from '@/components/organisms/chat/Messages'
+import React, { RefObject } from 'react';
+import {
+  AssistantMessage,
+  SystemMessage,
+  UserMessage,
+} from '@/components/molecules/messages/MessageTypes';
+import { FeedbackButtons } from '@/components/molecules/feedbackButtons/FeedbackButtons';
+import { Message } from '@/components/organisms/chat/Messages';
 
 export type MessageListProps = {
-  messages: Message[]
-  isLoading: boolean
-  feedback: Record<number, 'up' | 'down'>
-  onFeedback: (messageIndex: number, type: 'up' | 'down', message: Message) => void
-  endRef: RefObject<HTMLDivElement | null>
-}
+  messages: Message[];
+  isLoading: boolean;
+  feedback: Record<number, 'up' | 'down'>;
+  onFeedback: (messageIndex: number, type: 'up' | 'down', message: Message) => void;
+  endRef: RefObject<HTMLDivElement | null>;
+};
 
 export const MessageList: React.FC<MessageListProps> = ({
   messages,
@@ -24,10 +28,10 @@ export const MessageList: React.FC<MessageListProps> = ({
         message.role === 'user'
           ? UserMessage
           : message.role === 'system'
-          ? SystemMessage
-          : AssistantMessage
+            ? SystemMessage
+            : AssistantMessage;
 
-          const isLatestMessage = i === messages.length - 1
+      const isLatestMessage = i === messages.length - 1;
       return (
         <div key={i}>
           <Msg content={message.content} />
@@ -45,15 +49,13 @@ export const MessageList: React.FC<MessageListProps> = ({
             </div>
           )}
         </div>
-      )
+      );
     })}
 
     {isLoading && (
-      <div className="ml-2 text-gray-500 animate-pulse text-sm">
-        Agent is typing...
-      </div>
+      <div className="ml-2 text-gray-500 animate-pulse text-sm">Agent is typing...</div>
     )}
 
     <div ref={endRef} />
   </div>
-)
+);

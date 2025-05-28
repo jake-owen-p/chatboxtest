@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 type MessageHeaderProps = {
-  onClose: () => void
-  title?: string
-}
+  onClose: () => void;
+  title?: string;
+};
 
 export const MessageHeader: React.FC<MessageHeaderProps> = ({ onClose, title = 'Chat' }) => (
   <div className="flex items-center justify-between p-2 border-b bg-primary-400 dark:bg-gray-800 rounded-t-lg">
@@ -16,4 +16,4 @@ export const MessageHeader: React.FC<MessageHeaderProps> = ({ onClose, title = '
       ✕
     </button>
   </div>
-)
+);

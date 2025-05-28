@@ -1,5 +1,5 @@
-import React from 'react'
-import { StarIcon, ArrowRightIcon } from '@heroicons/react/24/solid'
+import React from 'react';
+import { StarIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 
 export const HeroText = () => {
   return (
@@ -15,7 +15,8 @@ export const HeroText = () => {
         </h1>
 
         <p className="text-sm text-gray-200 mb-8">
-          Automate admin, not relationships. Vinny handles your busywork so your team can spend more time with tenants and landlords.
+          Automate admin, not relationships. Vinny handles your busywork so your team can spend more
+          time with tenants and landlords.
         </p>
 
         <div className="flex flex-row items-center gap-4">
@@ -26,14 +27,11 @@ export const HeroText = () => {
             Book a Demo
             <ArrowRightIcon className="w-5 h-5 ml-2 stroke-current text-[#1F2A1D]" />
           </a>
-          <a
-            href="#try-vinny"
-            className="text-lime-400 hover:text-lime-300 font-medium underline"
-          >
+          <a href="#try-vinny" className="text-lime-400 hover:text-lime-300 font-medium underline">
             Or Try Vinny Now
           </a>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

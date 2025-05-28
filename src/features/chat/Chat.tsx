@@ -47,8 +47,6 @@ export const Chat: React.FC = () => {
   };
 
   const handleFeedback = async (messageIndex: number, type: 'up' | 'down', message: Message) => {
-    if (messageIndex === 0) return;
-
     try {
       await submitFeedback({
         chatId: CHAT_ID,

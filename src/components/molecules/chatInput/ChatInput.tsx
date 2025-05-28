@@ -29,6 +29,15 @@ export const MessageInput: React.FC<MessageInputProps> = ({
     ta.style.height = Math.min(ta.scrollHeight, maxHeight) + 'px';
   }, [value]);
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    onSend();
+  } else {
+    onKeyDown(e);
+  }
+};
+
   const Icon = isLoading ? StopIcon : PaperAirplaneIcon;
 
   return (
@@ -37,7 +46,7 @@ export const MessageInput: React.FC<MessageInputProps> = ({
         ref={textareaRef}
         value={value}
         onChange={onChange}
-        onKeyDown={onKeyDown}
+        onKeyDown={handleKeyDown}
         placeholder="Type a message"
         rows={1}
         className="flex-1 rounded-md border px-2 py-1 text-sm bg-transparent outline-none resize-none overflow-y-auto max-h-[200px]"

@@ -1,26 +1,8 @@
 # 🌍 Geography Chatbot – Technical README
 
-## 🚀 How to Get Started
-
-1. Clone the repository:
-   ```bash
-   git clone git@github.com:jake-owen-p/chatboxtest.git
-   cd chatboxtest
-   ```
-
-2. Ensure the correct Node version:
-   ```bash
-   nvm install 22.15.0
-   nvm use
-   ```
-
-3. Copy env.example and rename to .env.local and replace `<your-openai-api-key>` with your API key
-
-4. Install dependencies and run the development server:
-   ```bash
-   npm install
-   npm run dev
-   ```
+## ❓ Secrets Setup
+1. Copy env.example and rename to .env.local
+2. replace `<your-openai-api-key>` with your API key
 
 ## ✅ What’s Implemented
 
@@ -56,6 +38,9 @@
 
 - **Weather & Climate Tips**  
   Provide 7-day forecasts and ideal travel seasons for chosen destinations
+
+- **User Management**  
+  When user logged in - inject user details into system context
 
 ---
 
@@ -127,5 +112,30 @@ If users' preferences are stored (e.g. favorite country/continent/destination), 
 - **Auto Deploy**  
   Add CI/CD pipeline for builds, tests, and deploys
 
+- **User Management**  
+  Give users a screen they can login
+
 ---
+
+## 🚀 Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone git@github.com:jake-owen-p/chatboxtest.git
+   cd chatboxtest
+   ```
+
+2. Ensure the correct Node version:
+   ```bash
+   nvm install 22.15.0
+   nvm use
+   ```
+
+3. Copy env.example and rename to .env.local and replace `<your-openai-api-key>` with your API key
+
+4. Install dependencies and run the development server:
+   ```bash
+   npm install
+   npm run dev
+   ```
 

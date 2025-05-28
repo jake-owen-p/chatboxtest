@@ -29,6 +29,18 @@
 
 ## 🚀 Future Improvements
 
+### 🤖 Chatbot
+- **Chat History & Sessions**  
+  Save and organize past chats. Let users:
+  - Browse previous conversations
+  - Search, rename, or delete sessions
+  - View timestamps or summaries for each chat
+
+- **New Chat & Session Management**  
+  Start a fresh chat anytime with a "New Chat" button. Option to:
+  - Continue from previous sessions
+  - Duplicate existing sessions for branching questions
+
 ### 🤖 AI Enhancements
 - **Personalized Travel Suggestions**  
   Generate itineraries with hidden gems, local events, and seasonal highlights based on user preferences

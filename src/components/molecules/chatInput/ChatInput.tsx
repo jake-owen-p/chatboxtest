@@ -39,7 +39,6 @@ export const MessageInput: React.FC<MessageInputProps> = ({
         onChange={onChange}
         onKeyDown={onKeyDown}
         placeholder="Type a message"
-        disabled={isLoading}
         rows={1}
         className="flex-1 rounded-md border px-2 py-1 text-sm bg-transparent outline-none resize-none overflow-y-auto max-h-[200px]"
       />

@@ -18,7 +18,7 @@ export interface ChatHistoryMessage {
   content: string;
 }
 
-export const runtime = 'edge' as const;
+export const runtime = 'edge';
 
 export async function POST(req: Request): Promise<Response> {
   let body: { messages?: IncomingMessage[] };

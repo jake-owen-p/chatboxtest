@@ -1,41 +1,10 @@
-
-# Coding Assessment: Chatbox Enhancement
-
-## 🎯 Your Task
-
-Your mission is to transform this chatbot into an extraordinary conversational agent. Here's what you need to do:
-
-1. **Onboarding Questions**: Develop a feature to ask users three onboarding questions:
-   - What is their favorite country?
-   - What is their favorite continent?
-   - What is their favorite destination?
-
-2. **General Purpose Chatbot**: Post-onboarding, the chatbot should be capable of answering questions related to world geography.
-
-3. **Creativity and Architecture**: We are looking for innovative solutions, creative flair, and robust architectural decisions. This task should take at least 1 hour, but feel free to invest more time to enhance the chatbot's capabilities.
-
-## 📋 Additional Notes
-
-- Utilize environment variables from `.env.example` (OpenAI Keys for this project).
-- Implement a streaming chatbot for the chat rendered in `page.tsx` using the `/api/stream` endpoint.
-- Leverage OpenAI npm packages, adhere to best practices, and incorporate your own design and functionality ideas.
-- Use the GPT 4.1 model.
-- Ensure the chat can onboard users, allow them to change preferences, and engage in informative conversations. (No database needed; mock data is sufficient.)
-
-## ✨ Current Features
-
-- **Next.js** (App Router) running on **Node 22.15.0**
-- **TypeScript** with `strict` mode enabled
-- **Tailwind CSS** for rapid UI styling
-- Fixed bottom-right chatbox component
-- `/api/stream` **Edge** route that streams an echo response ⚡️
-- Stub for integrating an **OpenAI Assistant** to add side-effects (analytics, logging, etc.)
+# 🌍 Geography Chatbot – Technical README
 
 ## 🚀 How to Get Started
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:AskVinny/chatboxtest.git
+   git clone git@github.com:jake-owen-p/chatboxtest.git
    cd chatboxtest
    ```
 
@@ -45,18 +14,118 @@ Your mission is to transform this chatbot into an extraordinary conversational a
    nvm use
    ```
 
-3. Install dependencies and run the development server:
+3. Copy env.example and rename to .env.local and replace `<your-openai-api-key>` with your API key
+
+4. Install dependencies and run the development server:
    ```bash
    npm install
    npm run dev
    ```
 
-## 🧑‍💻 Best Practice Guidance
+## ✅ What’s Implemented
 
-1. Use strict TypeScript with ESLint (`typescript-eslint`).
-2. Opt for Edge runtime to reduce latency on the streaming route.
-3. Manage environment variables via `env.example` (ignored by Git).
+### 🧠 Chatbot
+- **Conversational Geography Assistant** powered by OpenAI (GPT-4.1)
+- **User Onboarding**: Asks for:
+  1. Favorite country  
+  2. Favorite continent  
+  3. Favorite destination  
+- **Streaming Responses** using `@ai-sdk/openai` and Vercel's edge runtime
+- **Message Logging**: All messages are timestamped, ordered, and tracked per session in a mock database
 
-## 📧 Completion
+### 📊 Feedback API
+- Users can upvote/downvote assistant replies
+- Feedback stored for ratio analysis (e.g. good vs bad)
+- Foundation for future model fine-tuning or analytics
 
-Once you've completed the task, please email Rory at [rory@askvinny.co.uk] to schedule a review call and discuss your implementation.
+### ⚙️ Infrastructure Added
+- **React Query** for managing async state
+- **Atomic Design Structure** for reusable UI components
+- **Prettier** for consistent code formatting
+
+---
+
+## 🚀 Future Improvements
+
+### 🤖 AI Enhancements
+- **Personalized Travel Suggestions**  
+  Generate itineraries with hidden gems, local events, and seasonal highlights based on user preferences
+
+- **Visa & Entry Rules**  
+  Summarize visa policies, vaccination requirements, and entry fees per country
+
+- **Weather & Climate Tips**  
+  Provide 7-day forecasts and ideal travel seasons for chosen destinations
+
+---
+
+#### 🧠 Model Context Protocol (MCP)
+
+- **Tool-based Execution**  
+  Enable the assistant to call tools like this through the web:
+  - `getWeather(location)`
+  - `getVisaRequirements(country)`
+  - `fetchEvents(country, dateRange)`
+  
+  This allows more precise and real-time responses rather than generic knowledge.
+
+- **Context Injection**  
+  Keep a memory of user onboarding preferences (country, continent, destination) and inject them into the prompt automatically during each interaction for a personalized, stateful experience.
+
+- **Modular Expansion**  
+  Future tools like "budget estimator" or "flight finder" could be added to the toolset without retraining the model.
+
+---
+
+#### 🧭 Collaborative Filtering (Future)
+
+If users' preferences are stored (e.g. favorite country/continent/destination), collaborative filtering can be introduced to improve suggestions by:
+
+- Recommending destinations loved by similar users
+- Predicting follow-up questions based on others with similar travel profiles
+- Creating clusters of travel styles (e.g. adventure-seekers, beach-goers, cultural tourists) to tailor suggestions
+- Ranking search results or responses based on what's worked well for similar users in the past
+
+---
+
+### 🧪 Testing & Monitoring
+
+- **Monitoring & Alerts**  
+  Set up real-time error tracking and performance monitoring using tools like **Sentry** or **LogRocket**. This helps surface:
+  - Unexpected API failures (e.g., LLM downtime)
+  - Latency spikes in chat response times
+  - UI errors impacting user experience  
+  Configure alerts (Slack/Email) so issues are caught **before users report them**.
+
+- **User Behavior Analysis**  
+  Use **PostHog**, **Plausible**, or **Google Analytics 4** to track:
+  - Which questions are asked most frequently
+  - Where users drop off in onboarding or during chats
+  - Button usage (e.g., feedback thumbs, scrolling, reloading)
+
+- **Basic E2E Test Suite**  
+  A lightweight set of end-to-end smoke tests to ensure core flows work after each deployment. This includes:
+  - App loads successfully  
+  - Chat interface opens  
+  - User can send and receive messages  
+
+  These quick checks act as a **sanity safety net**, helping us move fast without breaking critical functionality in future releases.
+
+---
+
+### 💬 UX & Design
+- Allow manual scroll takeover without forced auto-scroll
+- Add typewriter effect and human avatar for emotional connection
+- Improve accessibility and mobile UI responsiveness
+
+---
+
+### 🧱 Technical Enhancements
+- **Onboarding FSM**  
+  Model onboarding as a finite-state machine for clarity and maintainability
+
+- **Auto Deploy**  
+  Add CI/CD pipeline for builds, tests, and deploys
+
+---
+

@@ -111,6 +111,7 @@ If users' preferences are stored (e.g. favorite country/continent/destination), 
 ---
 
 ### 💬 UX & Design
+- Responsive design
 - Allow manual scroll takeover without forced auto-scroll
 - Add typewriter effect and human avatar for emotional connection
 - Improve accessibility and mobile UI responsiveness

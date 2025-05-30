@@ -38,11 +38,6 @@ export async function POST(req: Request): Promise<Response> {
 
   const chatHistory: ChatHistoryMessage[] = messages.map((m) => {
     const content = m.parts.map((p) => p.text).join('');
-    auditMessage({
-      role: m.role,
-      content,
-      timestamp: new Date().toISOString(),
-    });
     return { role: m.role, content };
   });
 
